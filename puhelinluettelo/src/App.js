@@ -4,7 +4,7 @@ import Person from "./components/person"
 
 const App = () => {
     const [persons, setPersons] = useState([{ name: 'Arto Hellas' }])
-    const [newName, setNewName] = useState(' ')
+    const [newName, setNewName] = useState('')
 
 
     const rows = () => persons.map(person =>
@@ -23,11 +23,25 @@ const App = () => {
 
     const addNewPerson = (event) => {
         event.preventDefault()
+
         const NewPersonObject = {
             name: newName
         }
-        setPersons(persons.concat(NewPersonObject))
-        setNewName('')
+        console.log('newName', newName)
+        const persMap = persons.map(p => p.name)
+        console.log('persMap', persMap)
+        if (persMap.includes(newName)) {
+            alert(newName + " is already in book")
+            setNewName('')
+        } else {
+            setPersons(persons.concat(NewPersonObject))
+            setNewName('')
+
+        }
+        console.log('processed')
+        console.log('persons', persons)
+
+
     }
 
 
